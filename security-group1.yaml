@@ -1,0 +1,17 @@
+Resource:
+  SecurityGroup:
+  Type: 'AWS::EC2::SecurityGroup'
+  Properties:
+    GroupDescription: 'learn how to protect my ec2 instance'
+    VpcId: !Ref VPC
+    Tags:
+    - Key: Name
+      Value: '6'
+  Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: 'ami-6052e21a'
+      InstanceType: 't2.micro'
+      SecurityGroupIds:
+      - !Ref SecurityGroup
+      Subnetid: !Ref Subnet
