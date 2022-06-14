@@ -15,3 +15,14 @@ Resource:
       SecurityGroupIds:
       - !Ref SecurityGroup
       Subnetid: !Ref Subnet
+
+  SecurityGroupIngress: # インバウンドICMPトラフィックを許可するルール
+  - IpProtocol: icmp    # プロトコルとしてICMPを指定
+    FromPort: '-1'      # ICMPはポートを使用しない
+    ToPort: '-1'        # -1はすべてのポートを意味する
+    CidrIp: '0.0.0.0/0' # 任意の送信元IPアドレスからのトラフィックを許可
+
+  - IpProtocol: tcp     # SSHはTCPプロトコルに基づいている
+    FromPort: '22'      # デフォルトのSSHポートは22
+    ToPort: '22'
+    CidrIp: '0.0.0.0/0'
